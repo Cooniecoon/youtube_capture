@@ -16,7 +16,7 @@ def video_info(cap):
 
     return fps, length
 
-url = "https://www.youtube.com/watch?v=mi_zTNkcBrc"
+url = "https://www.youtube.com/watch?v=CMqROal8Usk"
 video = pafy.new(url)
 best = video.getbest(preftype="mp4")
 
@@ -26,16 +26,16 @@ fps, length=video_info(capture)
 saved_path='./image/'
 count = 0
 time = 0.7
-
+print(url)
 # while True:
 while(capture.isOpened()):
     ret, image = capture.read()
     # cv2.imshow('image',image)
     if(int(capture.get(1)) % int(fps) == 0):
-        print('Saved frame number : ' + str(int(capture.get(1))))
+        # print('Saved frame number : ' + str(int(capture.get(1))))
         image = cv2.resize(image, dsize=(640, 640), interpolation=cv2.INTER_LINEAR)
         cv2.imwrite("{0}{1}_{2}.jpg".format(saved_path,url[-4:],count), image)
-        print('Saved frame%d.jpg' % count)
+        # print('Saved frame%d.jpg' % count)
         count += 1
 
     if(int(capture.get(1)) >= length):
